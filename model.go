@@ -44,7 +44,7 @@ type EntityContext struct {
 
 // ModelFromData creates a new Model from user-provided training data.
 func ModelFromData(name string, sources ...DataSource) *Model {
-	model := defaultModel(true, true)
+	model := NewDefaultModel(true, true)
 	model.Name = name
 	for _, source := range sources {
 		source(model)
@@ -110,7 +110,7 @@ func loadClassifier(path string) (string, *entityExtracter) {
 	return name, newTrainedEntityExtracter(model)
 }
 
-func defaultModel(tagging, classifying bool) *Model {
+func NewDefaultModel(tagging, classifying bool) *Model {
 	var tagger *perceptronTagger
 	var classifier *entityExtracter
 
